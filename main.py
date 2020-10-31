@@ -5,6 +5,14 @@ default = [{"success": "true"}]
 
 api = Flask(__name__)
 
+try:
+  import googleclouddebugger
+  googleclouddebugger.enable(
+    breakpoint_enable_canary=True
+  )
+except ImportError:
+  pass
+
 @api.route('/storage', methods=['GET'])
 def get_storage():
     bucket_name = "run-storage"
